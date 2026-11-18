@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>المُعِدّ | دليل المعلم</title>
+<meta name="description" content="حوّل نص الدرس أو ملف PDF أو صورة إلى أسئلة جاهزة للعرض التفاعلي وامتحان مطبوع.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23ebc782%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-size=%2720%27 text-anchor=%27middle%27 fill=%27%23093631%27 font-family=%27Arial%27%3E%D8%AF%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script defer src="vendor/pptxgen.bundle.js"></script>
+<script defer src="assets/templates-data.js"></script>
+<script defer src="assets/studio.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap top-inner">
+<a class="brand" href="index.html"><span class="mark" aria-hidden="true">د</span><strong>دليل المعلم</strong></a>
+<nav class="main" aria-label="التنقل الرئيسي"><a href="index.html">الرئيسية</a><a href="guide.html">خطوات البدء</a><a href="studio.html" aria-current="page">المُعِدّ</a><a href="templates.html">نماذج جاهزة</a></nav>
+</div></header>
+
+<main class="wrap">
+<nav class="stepper" aria-label="خطوات العمل">
+<a href="#s1"><b>١</b> مادة الدرس</a><a href="#s2"><b>٢</b> الذكاء الاصطناعي</a><a href="#s3"><b>٣</b> المراجعة</a><a href="#s4"><b>٤</b> التنزيل</a>
+</nav>
+
+<div class="workspace">
+<!-- العمود الأول -->
+<div>
+<section id="s1" class="card" aria-labelledby="s1-title">
+<div class="section-head"><div><h2 id="s1-title">١. مادة الدرس</h2><p>اكتب بيانات الدرس، ثم ألصق النص أو ارفع ملفًا أو صورة.</p></div>
+<div class="actions" style="margin:0"><a class="btn quiet small" href="templates.html">اختر نموذجًا جاهزًا</a><button id="reset" class="btn danger small" type="button">بدء جديد</button></div></div>
+
+<div class="row">
+<div><label for="title">عنوان الدرس</label><input id="title" maxlength="120" placeholder="مثال: دورة الماء في الطبيعة"></div>
+<div><label for="subject">المادة</label><input id="subject" maxlength="40" placeholder="مثال: العلوم" list="subjects">
+<datalist id="subjects"><option>اللغة العربية</option><option>الرياضيات</option><option>العلوم</option><option>التربية الإسلامية</option><option>الدراسات الاجتماعية</option><option>اللغة الإنجليزية</option><option>الحاسوب</option></datalist></div>
+</div>
+<div class="row">
+<div><label for="grade">الصف</label><input id="grade" maxlength="40" placeholder="مثال: الرابع"></div>
+<div><label for="lang">لغة الأسئلة</label><select id="lang"><option value="ar">العربية</option><option value="en">الإنجليزية (لمادة اللغة الإنجليزية)</option></select></div>
+</div>
+
+<fieldset>
+<legend>ماذا تريد؟</legend>
+<div class="seg" role="radiogroup">
+<label><input type="radio" name="mode" value="generate" checked> أنشئ أسئلة جديدة من المادة</label>
+<label><input type="radio" name="mode" value="convert"> حوّل أسئلة موجودة عندي (ورقة امتحان، صورة، PDF)</label>
+</div>
+<div id="gen-opts">
+<div class="row">
+<div><label for="count">عدد الأسئلة</label><select id="count"><option>3</option><option selected>5</option><option>8</option><option>10</option><option>15</option><option>20</option></select></div>
+<div><label for="level">مستوى الصعوبة</label><select id="level"><option value="mixed">متنوع (سهل ومتوسط وصعب)</option><option value="easy">سهل في الغالب</option><option value="hard">يركز على الفهم والتطبيق</option></select></div>
+</div>
+<span class="label">أنواع الأسئلة</span>
+<div class="checks" id="types">
+<label><input type="checkbox" value="mcq" checked> اختيار من متعدد</label>
+<label><input type="checkbox" value="tf" checked> صح أو خطأ</label>
+<label><input type="checkbox" value="fill"> ملء الفراغ</label>
+<label><input type="checkbox" value="short"> إجابة قصيرة</label>
+<label><input type="checkbox" value="open"> سحابة كلمات / رأي</label>
+</div>
+</div>
+</fieldset>
+
+<label for="source">نص الدرس أو تفريغ الفيديو</label>
+<textarea id="source" rows="7" placeholder="ألصق شرح الدرس هنا، أو ارفع ملفًا بالأسفل فيُستخرج نصه تلقائيًا."></textarea>
+<p class="help" id="source-count"></p>
+
+<span class="label">أو ارفع ملفات</span>
+<div id="drop" class="drop" tabindex="0" role="button" aria-describedby="drop-help">
+<strong>اسحب الملفات هنا أو اضغط للاختيار</strong>
+<span id="drop-help" class="muted">PDF، Word ‏(docx)، نص (txt)، صور (JPG / PNG)، وصور الكتاب أو ورقة الامتحان</span>
+</div>
+<input id="file" type="file" multiple accept=".pdf,.docx,.txt,.md,image/*" hidden>
+<ul id="files" class="files"></ul>
+<div id="img-note" class="note" hidden><strong>عن الصور وملفات PDF المصوّرة:</strong> لا تستطيع الصفحة قراءة الكتابة داخل الصورة. أرفق هذه الملفات نفسها في ChatGPT مع الطلب، وسيقرؤها هو. الطلب يخبره بذلك تلقائيًا.</div>
+</section>
+
+<section id="s2" class="card" style="margin-block-start:1.1rem" aria-labelledby="s2-title">
+<h2 id="s2-title">٢. اطلب الأسئلة من الذكاء الاصطناعي</h2>
+<ol class="steps-list">
+<li>اضغط <strong>نسخ الطلب</strong>.</li>
+<li>افتح <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a> (أو Gemini أو Claude) والصق الطلب. <span id="attach-hint" hidden><strong>وأرفق الصور والملفات المشار إليها.</strong></span></li>
+<li>انسخ الرد كاملًا وارجع لهذه الصفحة واضغط <strong>لصق الرد</strong>.</li>
+</ol>
+<div class="actions"><button id="copy" class="btn primary big" type="button">نسخ الطلب</button><button id="open-import" class="btn secondary big" type="button" aria-expanded="false" aria-controls="import-box">لصق الرد</button></div>
+<div id="prompt-fallback" hidden><label for="prompt-text">لم يُسمح بالنسخ التلقائي. حدّد النص وانسخه يدويًا:</label><textarea id="prompt-text" class="prompt-box" readonly rows="6"></textarea></div>
+<div id="import-box" hidden>
+<label for="json">رد الذكاء الاصطناعي</label>
+<textarea id="json" rows="6" placeholder="الصق الرد كاملًا هنا، حتى لو كان فيه كلام قبل الأسئلة أو بعدها"></textarea>
+<div class="actions"><button id="import" class="btn primary" type="button">اعرض الأسئلة</button><button id="paste" class="btn quiet" type="button">لصق من الحافظة</button></div>
+</div>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+<details class="faq"><summary>لا أستخدم الذكاء الاصطناعي، هل أستطيع كتابة الأسئلة بنفسي؟</summary><p>نعم. انزل إلى «المراجعة» واضغط <strong>إضافة سؤال</strong>، واكتب أسئلتك. يجهّز دليل المعلم العرض والامتحان منها.</p></details>
+</section>
+</div>
+
+<!-- العمود الثاني -->
+<div>
+<section id="s3" class="card" aria-labelledby="s3-title">
+<div class="section-head"><div><h2 id="s3-title">٣. مراجعة الأسئلة</h2><p id="review-caption">ستظهر هنا الأسئلة لتراجعها وتعدّلها.</p></div><span id="qcount" class="pill" hidden></span></div>
+<p id="empty" class="empty">لا توجد أسئلة بعد. الصق رد الذكاء الاصطناعي، أو <a href="templates.html">افتح نموذجًا جاهزًا</a>، أو أضف سؤالًا بيدك.</p>
+<div id="summary-wrap" hidden><label for="summary">ملخص الدرس (يظهر في شريحة مستقلة)</label><textarea id="summary" rows="3"></textarea></div>
+<div id="warn-box"></div>
+<div id="questions"></div>
+<div class="actions"><button id="add" class="btn secondary" type="button">+ إضافة سؤال</button><button id="shuffle-all" class="btn quiet" type="button" hidden>خلط ترتيب الخيارات</button></div>
+</section>
+
+<section id="s4" class="card" style="margin-block-start:1.1rem" aria-labelledby="s4-title" hidden>
+<h2 id="s4-title">٤. التنزيل</h2>
+<div class="row">
+<div><label for="numbering">ترقيم الخيارات في العرض</label><select id="numbering"><option value="num">1، 2، 3، 4 (الأنسب لأزرار التفاعل)</option><option value="lat">A، B، C، D</option><option value="ar">أ، ب، ج، د</option></select></div>
+<div><label for="school">اسم المدرسة (للامتحان، اختياري)</label><input id="school" maxlength="80"></div>
+</div>
+<div class="row">
+<div><label for="exam-time">زمن الامتحان (اختياري)</label><input id="exam-time" maxlength="30" placeholder="مثال: ٢٠ دقيقة"></div>
+<div><span class="label">خيارات</span><div class="checks" style="flex-direction:column;gap:.15rem">
+<label><input type="checkbox" id="opt-summary" checked> شريحة الملخص</label>
+<label><input type="checkbox" id="opt-answers"> شريحة الإجابات في آخر العرض</label>
+<label><input type="checkbox" id="opt-shuffle"> امتحان بترتيب مختلف (نموذج ب)</label>
+</div></div>
+</div>
+<div id="plan-note" class="note" hidden></div>
+<div class="actions">
+<button class="btn primary big" type="button" id="pptx">العرض (PowerPoint)</button>
+<button class="btn secondary" type="button" id="exam">الامتحان للطباعة</button>
+<button class="btn secondary" type="button" id="key">مفتاح التصحيح</button>
+</div>
+<div class="actions">
+<button class="btn quiet small" type="button" id="copy-text">نسخ الأسئلة كنص</button>
+<button class="btn quiet small" type="button" id="save-json">حفظ المشروع (ملف)</button>
+<button class="btn quiet small" type="button" id="load-json">فتح مشروع محفوظ</button>
+<input id="json-file" type="file" accept=".json,application/json" hidden>
+</div>
+<p id="export-status" class="status" role="status" aria-live="polite"></p>
+<div class="tip"><strong>الخطوة التالية في PowerPoint:</strong> افتح العرض، وعلى كل شريحة سؤال أضف زر التفاعل المكتوب في <strong>ملاحظات الشريحة</strong> أسفلها. <a href="guide.html#first-lesson">كيف أفعل ذلك؟</a></div>
+</section>
+</div>
+</div>
+</main>
+
+<footer class="site wrap">
+<p>دليل المعلم أداة مستقلة مجانية لمساعدة المعلمين، وليست تابعة لأي شركة من الشركات المذكورة، والأسماء التجارية ملك أصحابها.</p>
+<p>كل شيء يعمل داخل متصفحك، ولا تُرسل ملفاتك إلى أي خادم. يُحفظ عملك تلقائيًا في هذا المتصفح فقط.</p>
+</footer>
+</body>
+</html>
