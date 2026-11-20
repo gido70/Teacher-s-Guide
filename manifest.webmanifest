@@ -1,0 +1,24 @@
+{
+  "name": "دليل المعلم",
+  "short_name": "دليل المعلم",
+  "description": "دليل عربي مبسّط للحصة التفاعلية: خطوات ClassPoint، وأداة تحوّل الدرس إلى أسئلة وعرض وامتحان. إعداد وتنفيذ: عبد الرحمن عوض الكريم (أبو هيثم).",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#edf4f1",
+  "theme_color": "#093631",
+  "categories": ["education"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "المُعِدّ", "url": "./studio.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "خطوات البدء", "url": "./guide.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

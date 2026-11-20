@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="شعار دليل المعلم">
+  <rect width="512" height="512" rx="112" fill="#093631"/>
+  <circle cx="256" cy="168" r="70" fill="#ebc782"/>
+  <g stroke="#ebc782" stroke-width="16" stroke-linecap="round">
+    <line x1="256" y1="58" x2="256" y2="82"/>
+    <line x1="150" y1="100" x2="167" y2="117"/>
+    <line x1="362" y1="100" x2="345" y2="117"/>
+    <line x1="116" y1="186" x2="140" y2="186"/>
+    <line x1="396" y1="186" x2="372" y2="186"/>
+  </g>
+  <path d="M256 250 C206 214 140 206 84 218 V408 C140 396 206 404 256 440 Z" fill="#ffffff"/>
+  <path d="M256 250 C306 214 372 206 428 218 V408 C372 396 306 404 256 440 Z" fill="#e3f1ec"/>
+  <path d="M256 250 V440" stroke="#093631" stroke-width="10"/>
+  <g stroke="#9cc2b6" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M118 262 C160 256 198 262 228 278"/><path d="M118 300 C160 294 198 300 228 316"/><path d="M118 338 C160 332 198 338 228 354"/>
+    <path d="M394 262 C352 256 314 262 284 278"/><path d="M394 300 C352 294 314 300 284 316"/><path d="M394 338 C352 332 314 338 284 354"/>
+  </g>
+</svg>
