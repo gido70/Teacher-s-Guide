@@ -138,11 +138,11 @@ async function pdfText(file) {
   const lib = window.pdfjsLib;
   try { lib.GlobalWorkerOptions.workerSrc = "vendor/pdf.worker.min.js"; } catch { /* */ }
   let doc;
-  try { doc = await lib.getDocument({ data: await file.arrayBuffer() }).promise; }
+  try { doc = await lib.getDocument({ data: await file.arrayBuffer(), isEvalSupported: false }).promise; }
   catch {
     // عند فتح الصفحة من الجهاز مباشرة قد يُمنع العامل؛ نحمّله في الصفحة نفسها
     await loadScript("vendor/pdf.worker.min.js");
-    doc = await lib.getDocument({ data: await file.arrayBuffer() }).promise;
+    doc = await lib.getDocument({ data: await file.arrayBuffer(), isEvalSupported: false }).promise;
   }
   const pages = [];
   for (let p = 1; p <= doc.numPages; p++) {
@@ -522,7 +522,7 @@ async function exportSlides() {
   const rtl = L.lang !== "en";
   const letters = O.numbering === "ar" ? LETTERS.ar : O.numbering === "lat" ? LETTERS.lat : LETTERS.num;
   const pptx = new window.PptxGenJS();
-  pptx.layout = "LAYOUT_WIDE"; pptx.rtlMode = rtl; pptx.title = L.title || "درس"; pptx.author = "دليل المعلم";
+  pptx.layout = "LAYOUT_WIDE"; pptx.rtlMode = rtl; pptx.title = L.title || "درس"; pptx.author = "دليل المعلم"; pptx.company = "دليل المعلم - إعداد عبد الرحمن عوض الكريم (أبو هيثم)";
   const base = { fontFace: rtl ? "Arial" : "Calibri", lang: rtl ? "ar-SA" : "en-US", rtlMode: rtl, align: rtl ? "right" : "left", margin: 0, valign: "mid" };
   const C = { bg: "F4F9F7", ink: "113535", green: "075A50", gold: "EBC782", soft: "E1F0EA" };
   const top = (s, kicker) => {
@@ -635,11 +635,12 @@ ol>li{padding:.35rem 0;break-inside:avoid}
 .lines span{display:block;border-bottom:1px solid #9aa;height:1.9rem}
 .ans{margin:.2rem 0 0;color:#0b5a50}.ev{margin:.1rem 0 0;color:#555;font-size:1rem}
 .bar{position:sticky;top:0;background:#fff;padding:.4rem 0;text-align:center}
+.made{font-size:.85rem;color:#666;margin-top:.3rem}
 .bar button{font:inherit;font-weight:700;padding:.35rem 1.1rem;border-radius:8px;border:1px solid #0b5a50;background:#0b5a50;color:#fff;cursor:pointer}
 @media print{.bar{display:none}body{margin:0;max-width:none}}
 @media(max-width:600px){.opts{grid-template-columns:1fr}.fields{grid-template-columns:1fr}}
 </style></head><body>
-<div class="bar"><button type="button" onclick="window.print()">${T.print}</button></div>
+<div class="bar"><button type="button" onclick="window.print()">${T.print}</button><div class="made">أُعدّ باستخدام «دليل المعلم»، إعداد وتنفيذ: عبد الرحمن عوض الكريم (أبو هيثم)</div></div>
 <header>${O.school ? `<div class="school">${escapeHtml(O.school)}</div>` : ""}<h1>${escapeHtml(title)}: ${escapeHtml(L.title)}</h1><div class="meta">${meta}</div>
 ${key ? "" : `<div class="fields"><span>${T.name}:</span><span>${T.cls}:</span><span>${T.grade}: &nbsp;&nbsp;&nbsp;/ ${n}</span></div>`}</header>
 ${body}</body></html>`;

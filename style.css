@@ -126,6 +126,8 @@ details.faq p,details.faq ul{margin-block-start:.4rem}
 .filter button[aria-pressed="true"]{background:var(--green);color:#fff}
 footer.site{padding-block:1.4rem 2rem;color:var(--muted);font-size:1rem;border-block-start:1px solid var(--border);margin-block-start:2rem}
 footer.site p+p{margin-block-start:.3rem}
+.credit{color:var(--ink);font-size:1.05rem;padding-block-end:.4rem;margin-block-end:.4rem;border-block-end:1px dashed var(--border)}
+.credit strong{color:var(--green)}
 @media(max-width:960px){.workspace,.grid3,.grid2{grid-template-columns:1fr}.sticky{position:static}}
 @media(max-width:560px){.wrap,.narrow{width:calc(100% - 1.1rem)}.top{position:static}.top-inner{flex-wrap:wrap;padding-block:.55rem}.hero{padding:1.2rem}.card{padding:.9rem}.row,.row3{grid-template-columns:1fr}nav.main{gap:.7rem}}
 @media print{.top,.no-print,footer.site{display:none!important}body{background:#fff}.card{border:none;padding:0}}
